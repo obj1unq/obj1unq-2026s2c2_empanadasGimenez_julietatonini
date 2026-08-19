@@ -6,6 +6,10 @@ object gimenez{
         fondo = fondo - empleado.sueldo()
         empleado.cobrarSueldo()
     }
+
+    method fondo(){
+        return fondo
+    }
 }
 
 
@@ -13,6 +17,9 @@ object gimenez{
 object galvan{
 
     var sueldo = 15000
+
+    var saldo = 0
+
 
     method sueldo(){
         return sueldo
@@ -22,7 +29,21 @@ object galvan{
         sueldo = _sueldo
     }
 
+    method cobrarSueldo(){
+        saldo += self.sueldo()
+    }
 
+    method dinero(){      
+        return saldo.max(0)     // devulve el máximo entre saldo y 0.
+    }
+
+    method deuda(){
+        return saldo.min(0).abs()  // min toma el menor entre saldo y 0, y abs devuelve el valor absoluto. Cuánto le falta a saldo para llegar a 0. Si es negativo, devuelve positivo y sino 0.
+    }
+
+    method gastar(monto){
+        saldo -= monto
+    }
 }
 
 
@@ -40,7 +61,7 @@ object baigorria{
     }
 
     method empanadasVendidas(){
-        return 
+        return empanadasVendidas
     }
 
     method vender(empanadas){
