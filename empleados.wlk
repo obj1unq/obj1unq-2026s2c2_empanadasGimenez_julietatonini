@@ -3,12 +3,23 @@ object gimenez{
     var fondo = 300000
 
     method pagarSueldo(empleado){
+        self.validarPagar(empleado)
         fondo = fondo - empleado.sueldo()
         empleado.cobrarSueldo()
     }
 
+    method validarPagar(empleado){
+        if (empleado.sueldo() > self.fondo()) {
+            self.error("No se puede pagar")
+        }
+    }
+
     method fondo(){
         return fondo
+    }
+
+    method fondo(nuevoFondo){
+        fondo = nuevoFondo
     }
 }
 
@@ -43,6 +54,10 @@ object galvan{
 
     method gastar(monto){
         saldo -= monto
+    }
+
+    method saldo(){
+        return saldo
     }
 }
 
