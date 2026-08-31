@@ -1,0 +1,47 @@
+import empleados.*
+
+describe "Tests de empleados" {
+     
+    test "dinero insuficiente"{
+        // se dispara un error cuando no se tiene suficiente dinero para pagar el sueldo de una persona.
+
+        //arrange
+        baigorria.vender(20000)
+        //act
+        gimenez.pagarSueldo(baigorria)
+        //assert
+        assert.throwsException({gimenez.pagarSueldo(galvan)})
+    }
+
+
+    test "fondos de Gimenez"{
+     // Gimenez tiene un fondo inicial de 300000. Al pagarle el sueldo a Galvan (sueldo de 15000), los fondos de Gimenez se reducen a 285000. 
+
+        //act
+        gimenez.pagarSueldo(galvan)
+        //assert
+        assert.equals(285000, gimenez.fondo())
+    }
+
+
+
+    test "Galvan tiene más ahorrado que Baigorria"{
+        // Ambos empleados cobran el sueldo de este mes. Baigorria este mes vendió 750 empanadas (cobra 11250). Los fondos ahorrados de Galvan son mayores a los de Baigorria. 
+
+        //act 
+        galvan.cobrarSueldo()
+        baigorria.vender(750)
+        baigorria.cobrarSueldo()
+        //assert
+        assert.that(galvan.saldo() > baigorria.totalCobrado()) 
+    }
+}
+
+
+
+
+
+
+
+
+
